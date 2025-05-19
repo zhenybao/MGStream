@@ -1,0 +1,354 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Motion-aware 3D Gaussian for Streamable Dynamic Scene Reconstruction">
+  <meta name="keywords" content="Motion-aware, Streamable, Gaussian Splatting">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MGStream: Motion-aware 3D Gaussian for Streamable Dynamic Scene Reconstruction</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    
+    gtag('js', new Date());
+    
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+	<link rel="stylesheet" href="./static/css/style.css">
+	<link rel="stylesheet" href="./static/css/css">
+	<link rel="stylesheet" href="./static/css/font-awesome.min.css">
+  <style id="ar94e88e2a9dstyle">
+    .ar94e88e2a9dhidden{ position:absolute !important; opacity:0 !important; pointer-events:none !important}
+</style>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link" style="font-size: 18px;">
+          PCL3DV Reasearch
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://zhenybao.github.io/LoopSparseGS" target="_blank">
+            LoopSparseGS
+          </a>
+          <a class="navbar-item" href="https://github.com/pcl3dv/DuNeRF" target="_blank">
+            Du-NeRF
+          </a>
+          <a class="navbar-item" href="https://github.com/pcl3dv/OV-NeRF" target="_blank">
+            OV-NeRF
+          </a>
+          <a class="navbar-item" href="https://gbliao.github.io/SPC-GS.github.io/" target="_blank">
+            SPC-GS
+          </a>
+          <a class="navbar-item" href="https://gbliao.github.io/CLIP-GS.github.io" target="_blank">
+            CLIP-GS
+          </a>
+          <a class="navbar-item" href="https://github.com/pcl3dv/PSAvatar" target="_blank">
+            PS-Avatar
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop has-text-centered">
+      <h1 class="title is-1 publication-title" style="font-size: 36px; font-weight: bolder; color: #c03d3e; width: 100%;">MGStream</h1>
+      <h1 class="title is-1 publication-title" style="font-size: 30px; max-width: 100%;">Motion-aware 3D Gaussian for Streamable Dynamic Scene Reconstruction</h1>
+      <div class="is-size-5 publication-authors">
+        <span class="author-block">
+          <a>Zhenyu Bao</a><sup>1,2</sup>,</span>
+        <span class="author-block">
+          <a>Qing Li</a><sup>2</sup>,</span>
+        <span class="author-block">
+          <a>Guibiao Liao</a><sup>1,2</sup>,</span>
+        <span class="author-block">
+          <a>Zhongyuan Zhao</a><sup>1,2</sup>,
+        </span>
+        <span class="author-block">
+          <a>Kanglin Liu</a><sup>2</sup>,
+        </span>
+      </div>
+
+
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Peking University,</span>
+            <span class="author-block"><sup>2</sup>Pengcheng Laboratory,</span>
+          </div>
+    
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/pcl3dv/MGStream" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+            </div>
+    
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- <br>
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/teaser.png" alt="">
+    </div>
+  </div>
+</section>
+  </div>
+</section> -->
+
+
+  <!-- <div class="container is-max-desktop"> -->
+    <div class="figure-caption" style="width: 50%">
+      <h2 class="title is-3">Abstract</h2>
+      <p style="font-size: 18px;">
+        3D Gaussian Splatting (3DGS) has gained significant attention in streamable dynamic novel view synthesis (DNVS) for its photorealistic rendering capability and computational efficiency. Despite much progress in improving rendering quality and optimization strategies, 
+3DGS-based streamable dynamic scene reconstruction still suffers from flickering artifacts and storage inefficiency, and struggles to model the emerging objects. To tackle this, we introduce MGStream which employs the motion-related 3D Gaussians (3DGs) to reconstruct the dynamic and the vanilla 3DGs for the static. The motion-related 3DGs are implemented according to the motion mask and the clustering-based convex hull algorithm. The rigid deformation is applied to the motion-related 3DGs for modeling the dynamic, and the attention-based optimization on the motion-related 3DGs enables the reconstruction of the emerging objects. As the deformation and optimization are only conducted on the motion-related 3DGs, MGStream avoids flickering artifacts and improves the storage efficiency. Extensive experiments on real-world datasets N3DV and MeetRoom demonstrate that MGStream surpasses existing streaming 3DGS-based approaches in terms of rendering quality, training/storage efficiency and temporal consistency.
+      </p>
+      <br>
+      <img src="./static/images/pipeline.png" alt="">
+  </div>
+
+   <!-- Paper video. -->
+   <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths" style="width: 50%">
+      <h2 class="title is-3">Video</h2>
+      <div class="publication-video">
+        <iframe src="./static/videos/supplementary_MGStream.mp4"
+                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+  <!--/ Paper video. -->
+<!-- </div> -->
+</div>
+</section>
+
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Despite the photorealistic novel view synthesis (NVS) performance achieved by the original 3D Gaussian splatting (3DGS), its rendering quality significantly degrades with sparse input views. This performance drop is mainly caused by the limited number of initial points generated from the sparse input, insufficient supervision during the training process, and inadequate regularization of the oversized Gaussian ellipsoids. To handle these issues, we propose the LoopSparseGS, a loop-based 3DGS framework for the sparse novel view synthesis task. In specific, we propose a loop-based Progressive Gaussian Initialization (PGI) strategy that could iteratively densify the initialized point cloud using the rendered pseudo images during the training process. Then, the sparse and reliable depth from the Structure from Motion, and the window-based dense monocular depth are leveraged to provide precise geometric supervision via the proposed Depth-alignment Regularization (DAR). Additionally, we introduce a novel Sparse-friendly Sampling (SFS) strategy to handle oversized Gaussian ellipsoids leading to large pixel errors. Comprehensive experiments on four datasets demonstrate that LoopSparseGS outperforms existing state-of-the-art methods for sparse-input novel view synthesis, across indoor, outdoor, and object-level scenes with various image resolutions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+
+<div class="hr"></div>
+<div>
+  <h2 style="font-size: 35px;">DNVS on free views</h2>
+  <div class="figure-caption" style="width: 70%">
+
+  </div>
+      
+  <div class="content-video" >
+    <video playsinline="" autoplay="" loop="" preload="" muted="" width="50%">
+      <source src="./static/videos/dnvs/free_view.mp4" type="video/mp4">
+    </video>
+  </div>
+
+
+  <div class="hr"></div>
+  <div>
+    <h2 style="font-size: 35px;">Comparsion with 3DGStream</h2>
+    <div class="figure-caption" style="width: 70%">
+  
+    </div>
+    
+
+    <div class="content-video" style="margin-bottom: 40px">
+      <!--          <h3 style="font-weight: bolder; font-size: 22px;">Trained with 24 Views</h3>-->
+      
+              <div class="content-video-container" >
+                <div class="content-video-frame" style="width: 38%;">
+                  <span style="font-weight: bolder; font-size: 30px">3DGStream</span>
+                  <video playsinline="" autoplay="" loop="" preload="" muted="" width="100%">
+                    <source src="./static/videos/comparsion/3dgstream_flame.mp4" type="video/mp4">
+                  </video>
+                </div>
+      
+                
+
+                <div class="content-video-frame" style="width: 38%;">
+                  <span style="font-weight: bolder; font-size: 30px"> Ours</span>
+                  <video playsinline="" autoplay="" loop="" preload="" muted="" width="100%">
+                    <source src="./static/videos/comparsion/ours_flame_3dgstream.mp4" type="video/mp4">
+                  </video>
+                </div>
+              
+                
+      
+                <div class="content-video-frame" style="width: 38%;">
+                  <span style="font-weight: bolder; font-size: 30px">3DGStream</span>
+                  <video playsinline="" autoplay="" loop="" preload="" muted="" width="100%">
+                    <source src="./static/videos/comparsion/3dgstream_coffee.mp4" type="video/mp4">
+                  </video>
+                </div>
+      
+                <div class="content-video-frame" style="width: 38%;">
+                  <span style="font-weight: bolder; font-size: 30px">Ours</span>
+                  <video playsinline="" autoplay="" loop="" preload="" muted="" width="100%">
+                    <source src="./static/videos/comparsion/ours_coffee_3dgstream.mp4" type="video/mp4">
+                  </video>
+                </div>
+
+              </div>
+            </div>
+        </div>
+
+        <div class="hr"></div>
+        <div>
+          <h2 style="font-size: 35px;">Comparsion with StreamRF</h2>
+          <div class="figure-caption" style="width: 70%">
+        
+          </div>
+     
+          <div class="content-video" style="margin-bottom: 40px">
+            <!--          <h3 style="font-weight: bolder; font-size: 22px;">Trained with 24 Views</h3>-->
+            
+                    <div class="content-video-container" >
+                      <div class="content-video-frame" style="width: 38%;">
+                        <span style="font-weight: bolder; font-size: 30px">StreamRF</span>
+                        <video playsinline="" autoplay="" loop="" preload="" muted="" width="100%">
+                          <source src="./static/videos/comparsion/streamrf_flame.mp4" type="video/mp4">
+                        </video>
+                      </div>
+            
+                      <div class="content-video-frame" style="width: 38%;">
+                        <span style="font-weight: bolder; font-size: 30px"> Ours</span>
+                        <video playsinline="" autoplay="" loop="" preload="" muted="" width="100%">
+                          <source src="./static/videos/comparsion/ours_flame_streamrf.mp4" type="video/mp4">
+                        </video>
+                      </div>
+                    
+                      
+            
+                      <div class="content-video-frame" style="width: 38%;">
+                        <span style="font-weight: bolder; font-size: 30px">StreamRF</span>
+                        <video playsinline="" autoplay="" loop="" preload="" muted="" width="100%">
+                          <source src="./static/videos/comparsion/streamrf_coffee.mp4" type="video/mp4">
+                        </video>
+                      </div>
+            
+                      <div class="content-video-frame" style="width: 38%;">
+                        <span style="font-weight: bolder; font-size: 30px">Ours</span>
+                        <video playsinline="" autoplay="" loop="" preload="" muted="" width="100%">
+                          <source src="./static/videos/comparsion/ours_coffee_streamrf.mp4" type="video/mp4">
+                        </video>
+                      </div>
+      
+                    </div>
+                  </div>
+              </div>
+
+</div>
+
+<!-- <div class="hr"></div> -->
+<!-- <section class="section" id="BibTeX"> -->
+  <!-- <div class="container is-max-desktop content"> -->
+  <!-- <div class="figure-caption" style="width: 60%">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{,
+      title={MGStream: Motion-aware 3D Gaussian for Streamable Dynamic Scene Reconstruction},
+      author={Bao, Zhenyu and Liao, Guibiao and Zhou, Kaichen and Liu, Kanglin and Li, Qing and Qiu, Guoping},
+      journal={},
+      year={},
+    }
+</code></pre>
+  </div> -->
+<!-- </section> -->
+
+<br><br><br>
+
+</body>
+</html>
