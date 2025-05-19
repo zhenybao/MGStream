@@ -99,8 +99,8 @@
 <section class="hero">
   <div class="hero-body">
     <div class="container is-max-desktop has-text-centered">
-      <h1 class="title is-1 publication-title" style="font-size: 36px; font-weight: bolder; color: #c03d3e; width: 100%;">MGStream</h1>
-      <h1 class="title is-1 publication-title" style="font-size: 30px; max-width: 100%;">Motion-aware 3D Gaussian for Streamable Dynamic Scene Reconstruction</h1>
+      <h1 class="title is-1 publication-title" style="font-size: 36px; font-weight: width: 100%;">MGStream: Motion-aware 3D Gaussian</h1>
+      <h1 class="title is-1 publication-title" style="font-size: 36px; max-width: 100%;">for Streamable Dynamic Scene Reconstruction</h1>
       <div class="is-size-5 publication-authors">
         <span class="author-block">
           <a>Zhenyu Bao</a><sup>1,2</sup>,</span>
@@ -182,8 +182,8 @@
 
 
   <!-- <div class="container is-max-desktop"> -->
-    <div class="figure-caption" style="width: 50%">
-      <h2 class="title is-3">Abstract</h2>
+    <div class="figure-caption" style="width: 50%; margin-top: -2rem; margin-bottom: 1rem;">
+      <h2 style="font-size: 35px;">Abstarct</h2>
       <p style="font-size: 18px;">
         3D Gaussian Splatting (3DGS) has gained significant attention in streamable dynamic novel view synthesis (DNVS) for its photorealistic rendering capability and computational efficiency. Despite much progress in improving rendering quality and optimization strategies, 
 3DGS-based streamable dynamic scene reconstruction still suffers from flickering artifacts and storage inefficiency, and struggles to model the emerging objects. To tackle this, we introduce MGStream which employs the motion-related 3D Gaussians (3DGs) to reconstruct the dynamic and the vanilla 3DGs for the static. The motion-related 3DGs are implemented according to the motion mask and the clustering-based convex hull algorithm. The rigid deformation is applied to the motion-related 3DGs for modeling the dynamic, and the attention-based optimization on the motion-related 3DGs enables the reconstruction of the emerging objects. As the deformation and optimization are only conducted on the motion-related 3DGs, MGStream avoids flickering artifacts and improves the storage efficiency. Extensive experiments on real-world datasets N3DV and MeetRoom demonstrate that MGStream surpasses existing streaming 3DGS-based approaches in terms of rendering quality, training/storage efficiency and temporal consistency.
@@ -192,10 +192,11 @@
       <img src="./static/images/pipeline.png" alt="">
   </div>
 
+  <div class="hr"></div>
    <!-- Paper video. -->
    <div class="columns is-centered has-text-centered">
     <div class="column is-four-fifths" style="width: 50%">
-      <h2 class="title is-3">Video</h2>
+      <h2 style="font-size: 35px;">Video</h2>
       <div class="publication-video">
         <iframe src="./static/videos/supplementary_MGStream.mp4"
                 frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -232,7 +233,7 @@
   </div>
       
   <div class="content-video" >
-    <video playsinline="" autoplay="" loop="" preload="" muted="" width="50%">
+    <video playsinline="" autoplay="" loop="" preload="" muted="" width="40%">
       <source src="./static/videos/dnvs/free_view.mp4" type="video/mp4">
     </video>
   </div>
